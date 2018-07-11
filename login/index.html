@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Painel para gerenciar os links da pós graduação do senac pelotas">
+    <meta name="author" content="Matheus Souza">
+    <link rel="icon" type="image/png" href="../assets/img/icone.png" />
+
+    <title>Login - Senac Pós</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="../assets/css/login.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+    <form class="form-signin" id="formulario-login">
+        <h1 class="h3 mb-3 font-weight-normal">Autentique-se</h1>
+        <label for="email" class="sr-only">Email</label>
+        <input type="email" id="email" class="form-control" placeholder="Email" required autofocus>
+        <label for="password" class="sr-only">Senha</label>
+        <input type="password" id="password" class="form-control" placeholder="Senha" required>
+        <div class="checkbox mb-3" style="text-align: left;">
+            <label>
+                <input type="checkbox" id="lembrar"> Lembrar dados neste computador
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" id="btnLogar">Entrar</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="https://use.fontawesome.com/c1a05e1793.js"></script>
+
+    <script>
+        window.addEventListener('load', function (e) {
+            let dadosSalvos = localStorage.getItem('@appSenac/dadosLogin');
+            let email = document.getElementById('email');
+            let senha = document.getElementById('password');
+            let lembrar = document.getElementById('lembrar');
+
+            if (dadosSalvos) {
+                let dados = JSON.parse(dadosSalvos);
+                email.value = dados.email;
+                senha.value = dados.senha;
+                lembrar.checked = true;
+            }
+        });
+
+        var config = {
+            apiKey: "AIzaSyBJzsD206qIKb70UvFqcWy3PUz5MRSzVB4",
+            authDomain: "fatecsenacposapp.firebaseapp.com",
+            databaseURL: "https://fatecsenacposapp.firebaseio.com",
+            projectId: "fatecsenacposapp",
+            storageBucket: "fatecsenacposapp.appspot.com",
+            messagingSenderId: "45692216041"
+        };
+        firebase.initializeApp(config);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                window.location.href = 'https://senacpos.github.io/painel';
+            }
+        });
+
+        $("#formulario-login").on('submit', function (e) {
+            e.preventDefault();
+
+            let carregando = '<i class="fa fa-circle-o-notch fa-spin"></i> Entrando..';
+            $('#btnLogar').html(carregando);
+        
+            let email = $("#email").val();
+            let password = $("#password").val();
+            let lembrar = document.getElementById('lembrar');
+
+            if (lembrar.checked) {
+                let dados = {
+                    email: email,
+                    senha: password
+                };
+
+                localStorage.setItem('@appSenac/dadosLogin', JSON.stringify(dados));
+            } else {
+                localStorage.removeItem('@appSenac/dadosLogin');
+            }
+
+            firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                $('#btnLogar').html('Entrar');
+
+                if (errorCode === 'auth/wrong-password') {
+                    alert('Senha incorreta.');
+                } else {
+                    alert('Erro ao efetuar login. Favor tente novamente.');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
