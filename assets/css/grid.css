@@ -1,0 +1,106 @@
+.linha, 
+.coluna {
+    box-sizing: border-box;
+}
+
+.linha:before,
+.linha:after {
+    content: " ";
+    display: table;
+}
+
+.linha:after {
+    clear: both;
+}
+
+.coluna {
+    position: relative;
+    float: left;
+}
+
+.coluna + .coluna {
+    margin-left: 1.6%;
+}
+
+.coluna-1 {
+    width: 6.86666666667%;
+}
+
+.coluna-2 {
+    width: 15.3333333333%;
+}
+
+.coluna-3 {
+    width: 23.8%;
+}
+
+.coluna-4 {
+    width: 32.2666666667%;
+}
+
+.coluna-5 {
+    width: 40.7333333333%;
+}
+
+.coluna-6 {
+    width: 49.2%;
+}
+
+.coluna-7 {
+    width: 57.6666666667%;
+}
+
+.coluna-8 {
+    width: 66.1333333333%;
+}
+
+.coluna-9 {
+    width: 74.6%;
+}
+
+.coluna-10 {
+    width: 83.0666666667%;
+}
+
+.coluna-11 {
+    width: 91.5333333333%;
+}
+
+.coluna-12 {
+    width: 100%;
+    margin-left: 0;
+}
+
+@media only screen and (max-width: 550px) {
+    .coluna-1, 
+    .coluna-2, 
+    .coluna-3, 
+    .coluna-4, 
+    .coluna-5, 
+    .coluna-6, 
+    .coluna-7, 
+    .coluna-8, 
+    .coluna-9, 
+    .coluna-10, 
+    .coluna-11, 
+    .coluna-12 {
+        width: auto;
+        float: none;
+    }
+  
+    .coluna + .coluna {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .linha {
+        margin-bottom: 0;
+    }
+    .coluna {
+        margin-bottom: 10px;
+    }
+    .linha:last-child .coluna:last-child {
+        margin-bottom: 0;
+    }
+}
