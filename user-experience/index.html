@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<title>Pós Senac</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Página onde são disponibilizados links para o conteúdo das atividades da pós graduação do Senac." />
+<meta name="author" content="Matheus Souza" />
+
+<link rel="stylesheet" href="../assets/css/estilo.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../assets/css/grid.css" />
+<link rel="icon" type="image/png" href="../assets/img/icone.png" />
+
+<body>
+
+  <div class="ms-top">
+    <div class="ms-bar ms-blue ms-card ms-left-align ms-large">
+      <a class="ms-bar-item ms-button ms-hide-medium ms-hide-large ms-right ms-padding-large ms-hover-white ms-large ms-blue" href="javascript:void(0);"
+        onclick="openMenuMobile()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="https://senacpos.github.io" class="ms-bar-item ms-button ms-padding-large ms-white">
+        <i class="fa fa-home"></i>
+      </a>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="openMegaMenu()">Disciplinas
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+          <div class="linha" style="padding: 15px;">
+            <div class="coluna coluna-4">
+              <h5 style="color: #16232d">Módulo 1</h5>
+              <ul>
+                <li>
+                  <a href="https://senacpos.github.io/gerencia-configuracao-software" id="gerencia-configuracao-software">Gerência de Configuração de Software</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/user-experience" id="user-experience">User Experience</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/lingagens-programacao-web" id="lingagens-programacao-web">Linguagens de Programação para Web</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/frameworks-front-end" id="frameworks-front-end">Frameworks de Des.Web - Front-end</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/frameworks-back-end" id="frameworks-back-end">Frameworks de Des.Web - Back-end</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="coluna coluna-4">
+              <h5 style="color: #16232d">Módulo 2</h5>
+              <ul>
+                <li>
+                  <a href="https://senacpos.github.io/desenvolvimento-android" id="desenvolvimento-android">Des.de aplicações para dispositivos móveis Android</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/desenvolvimento-ios" id="desenvolvimento-ios">Des.de aplicações para dispositivos móveis iOS</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/desenvolvimento-aplicacoes-distribuidas" id="desenvolvimento-aplicacoes-distribuidas">Desenvolvimento de Aplicações Web Deistribuídas</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/tecnologia-bd-dispositivos-moveis" id="tecnologia-bd-dispositivos-moveis">Tecnol.de Banco de Dados em apl.para disp.móveis</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/web-semantica" id="web-semantica">Web Semântica</a>
+                </li>
+              </ul>
+            </div>
+            <div class="coluna coluna-4">
+              <h5 style="color: #16232d">Módulo 3</h5>
+              <ul>
+                <li>
+                  <a href="https://senacpos.github.io/desenvolvimento-dispositivos-moveis-idc" id="desenvolvimento-dispositivos-moveis-idc">Des de aplicações móveis aplicando Internet das Coisas</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/desenvolvimento-aplicacoes-hibridas" id="desenvolvimento-aplicacoes-hibridas">Des.de aplicações para dispositivos móveis híbridas</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/gerenciamento-de-projetos" id="gerenciamento-de-projetos">Gerenciamento de Projetos</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/qualidade-de-software" id="qualidade-de-software">Qual.de Software - Automação de testes</a>
+                </li>
+                <li>
+                  <a href="https://senacpos.github.io/metodologia-e-tcc" id="metodologia-e-tcc">Metodologia e Desenvolvimento de TCC</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="http://apsweb.senacrs.com.br/modulos/aluno/login.php5?" target="_blank" class="ms-bar-item ms-button ms-hide-small ms-padding-large ms-hover-white">Portal do Aluno</a>
+    </div>
+
+    <div id="navDemo" class="ms-bar-block ms-white ms-hide ms-hide-large ms-hide-medium ms-large">
+      <a class="ms-bar-item ms-button ms-padding-large" href="http://apsweb.senacrs.com.br/modulos/aluno/login.php5?" target="_blank">Portal do Aluno</a>
+    </div>
+  </div>
+
+  <header class="ms-container ms-blue ms-center" style="padding:85px 16px">
+    <h1 class="tituloDisciplina">
+      <i class="fa fa-circle-o-notch fa-spin"></i>
+    </h1>
+    <p class="nomeProfessor" style="display: none;"></p>
+    <p class="emailProfessor" style="display: none;"></p>
+  </header>
+
+  <div class="ms-row-padding ms-padding-64 ms-container">
+    <div class="ms-content">
+      <div class="ms-threethird">
+        <h1>Conteúdo e Atividades</h1>
+        <div style="overflow-x:auto;">
+          <table style="width: 100%;" cellpadding="0" cellspacing="0" border="0" id="tabelaLinks" style="display: none;">
+            <span id="carregando">
+              <i class="fa fa-circle-o-notch fa-spin"></i> Carregando..</span>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let idProfessor = 'ocjCG5nJ3CT2zOIjnWfwVKk31443';
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <script src="../assets/js/scripts.js"></script>
+</body>
+
+</html>
