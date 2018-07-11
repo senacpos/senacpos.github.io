@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Painel para gerenciar os links da pós graduação do senac pelotas">
+    <meta name="author" content="Matheus Souza">
+    <link rel="icon" type="image/png" href="icone.png" />
+
+    <title>Painel - Senac Pós</title>
+
+    <script src="https://use.fontawesome.com/c1a05e1793.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="../assets/css/painel.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="painel">Senac Pós - Professores</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="painel">Painel
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#modalDadosPessoais">Editar Informações Pessoais</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#" id="sair">Sair</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main role="main" class="container">
+
+        <div class="starter-template">
+            <h1 style="margin-bottom: 2em;">
+                <span id="nomeProfessor">Carregando..</span>
+            </h1>
+
+            <div class="alert" role="alert" id="mensagem" style="display: none;">
+                
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-header">Cadastrar Link</div>
+                <div class="card-body">
+                    <form id="formulario-links" autocomplete="off">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="url">Link (URL)</label>
+                                    <input type="text" class="form-control" id="url" placeholder="Link (URL) a ser cadastrada.." required />
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="descricao">Descrição</label>
+                                    <input type="text" class="form-control" id="descricao" placeholder="Descrição do link.." required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btnSalvar">Cadastrar</button>
+                        <button type="button" class="btn btn-success" onclick="limpaCamposForm()">Novo</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card bg-light mb-3">
+                <div class="card-header">Lista dos Links</div>
+                <div class="card-body">
+                    <table class="table" id="tabelaLinks" style="display: none;">
+                        <tr>
+                            <th>Descrição</th>
+                            <th>URL</th>
+                            <th style="min-width: 100px;">Ações</th>
+                        </tr>
+                        <tbody id="lista-links"></tbody>
+                    </table>
+                    <span id="txtCarregando">Carregando..</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <!-- /.container -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDadosPessoais" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form id="formDadosPessoais">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Editar informações pessoais</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="txtNomeProfessor">Nome</label>
+                            <input type="text" class="form-control" id="txtNomeProfessor" placeholder="Nome" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtEmailProfessor">Email</label>
+                            <input type="email" class="form-control" id="txtEmailProfessor" placeholder="Email" required />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtDisciplina">Disciplina</label>
+                            <input type="text" class="form-control" id="txtDisciplina" placeholder="Disciplina" required />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                        <button type="submit" class="btn btn-primary" id="btnSalvarDados">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+    <script>
+        // firebase config
+        var config = {
+            apiKey: "AIzaSyBJzsD206qIKb70UvFqcWy3PUz5MRSzVB4",
+            authDomain: "fatecsenacposapp.firebaseapp.com",
+            databaseURL: "https://fatecsenacposapp.firebaseio.com",
+            projectId: "fatecsenacposapp",
+            storageBucket: "fatecsenacposapp.appspot.com",
+            messagingSenderId: "45692216041"
+        };
+        firebase.initializeApp(config);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (!user) {
+                window.location.href = 'https://senacpos.github.io/login';
+                return;
+            }
+
+            let Professor = firebase.database().ref('Professores').child(user.uid);
+            Professor.once('value', function (r) {
+                let prof = r.val();
+                if(prof != null){
+                    $("#nomeProfessor").text('Olá, ' + prof.nome + '!');
+                    $("#txtNomeProfessor").val(prof.nome);
+                    $("#txtEmailProfessor").val(prof.email);
+                    $("#txtDisciplina").val(prof.disciplina);
+                } else {
+                    $("#nomeProfessor").text('Não definido');
+                    $("#mensagem").addClass('alert-danger');
+                    $("#mensagem").html("Você ainda não atualizou suas informações pessoas. <a href='#' data-toggle='modal' data-target='#modalDadosPessoais' class='alert-link'>Clique aqui</a> ou no menu para atualizá-las.")
+                    $("#mensagem").show();
+                }
+            });
+
+            let LinksRef = firebase.database().ref('Links/' + user.uid).orderByChild('dtAtualizacao');
+            let texto = '';
+            let tabela = document.getElementById("lista-links");
+
+            // Cadastrar link
+            $('#formulario-links').on('submit', function (e) {
+                e.preventDefault();
+                let desc = $("#descricao").val();
+                let link = $("#url").val();
+                let id = $("#id-link").val();
+
+                if (!desc || !link) {
+                    swal("Erro!", "Você deve preencher todos os campos.", "error");
+                    return;
+                }
+
+                let carregando = '<i class="fa fa-circle-o-notch fa-spin"></i> Salvando..';
+                $('#btnSalvar').html(carregando);
+
+                $("#id-link").remove();
+
+                let now = new Date().getTime();
+
+                let objLink = {
+                    descricao: desc,
+                    url: link,
+                    dtCriacaco: now,
+                    dtAtualizacao: now,
+                    professor: user.email
+                }
+
+                if (id) {
+                    let Link = firebase.database().ref('Links/' + user.uid).child(id);
+                    Link.set(objLink).then(function (data) {
+                        limpaCamposForm();
+                        swal({
+                            title: "Sucesso!",
+                            text: "Seu link foi alterado com sucesso!",
+                            icon: "success",
+                        });
+                    }).catch(function (error) {
+                        alert(error);
+                        console.error(error);
+                    });
+                } else {
+                    let Link = firebase.database().ref('Links/' + user.uid);
+                    Link.push(objLink).then(function (data) {
+                        limpaCamposForm();
+                        swal({
+                            title: "Sucesso!",
+                            text: "Seu link foi cadastrado com sucesso!",
+                            icon: "success",
+                        });
+                        //alert('Link cadastrado com sucesso!');
+                    }).catch(function (error) {
+                        alert(error);
+                        console.error(error);
+                    });
+                }
+
+                return false;
+            });
+
+            // Verifica atualizações nos registros da tabela e busca os dados
+            LinksRef.on('value', function (snapshot) {
+                $("#lista-links").html('');
+                $("#tabelaLinks").hide();
+                $("#txtCarregando").show();
+                let num = 0;
+
+                snapshot.forEach(function (childSnapshot) {
+                    let id = childSnapshot.key;
+                    let link = childSnapshot.val();
+                    num++;
+
+                    let linha = tabela.insertRow(-1);
+
+                    let colunaDescricao = linha.insertCell(0);
+                    let colunaURL = linha.insertCell(1);
+                    let colunaAcoes = linha.insertCell(2)
+
+                    colunaDescricao.textContent = link.descricao;
+                    colunaURL.textContent = link.url;
+                    colunaAcoes.innerHTML =
+                        "<button class='btn btn-primary btn-sm editar' id='" + id +
+                        "'><i class='fa fa-pencil' id='" +
+                        id +
+                        "'></i></button> <button class='btn btn-danger btn-sm excluir' id='" +
+                        id + "'><i class='fa fa-trash' id='" +
+                        id + "'></i></button>";
+
+                });
+
+                if (num > 0) {
+                    $("#tabelaLinks").show();
+                    $("#txtCarregando").hide();
+                } else {
+                    $("#txtCarregando").text('Nenhum link cadastrado até o momento.');
+                }
+
+                $(".editar").on('click', function (e) {
+                    limpaCamposForm();
+                    $("#btnSalvar").text('Salvar Alterações');
+                    let idObj = e.target.id;
+                    let linkObjeto = firebase.database().ref('Links/' + user.uid).child(idObj);
+                    linkObjeto.once('value', function (r) {
+                        let link = r.val();
+                        $("#url").val(link.url);
+                        $("#descricao").val(link.descricao);
+                    });
+
+                    let form = document.getElementById('formulario-links');
+                    let campoid = document.createElement('input');
+                    campoid.type = 'hidden';
+                    campoid.id = 'id-link';
+                    campoid.value = idObj;
+                    form.appendChild(campoid);
+                });
+
+                $(".excluir").on('click', function (e) {
+                    e.preventDefault();
+
+                    swal({
+                            title: "Você tem certeza?",
+                            icon: "warning",
+                            buttons: ["Não", "Sim"],
+                            dangerMode: true,
+                        })
+                        .then((willDelete) => {
+                            if (willDelete) {
+
+                                firebase.database().ref('Links/' + user.uid).child(e.target.id).remove();
+                                limpaCamposForm();
+                                swal("Link deletado com sucesso!", {
+                                    icon: "success",
+                                });
+                            }
+                        });
+                });
+            });
+
+            $("#formDadosPessoais").on('submit', function (e) {
+                e.preventDefault();
+
+                let nome = $("#txtNomeProfessor").val();
+                let email = $("#txtEmailProfessor").val();
+                let disciplina = $("#txtDisciplina").val();
+
+                if (!nome || !email || !disciplina) {
+                    swal("Erro!", "Você deve preencher todos os campos.", "error");
+                    return;
+                }
+
+                let objProfessor = {
+                    nome: nome,
+                    email: email,
+                    disciplina: disciplina
+                };
+
+                let carregando = '<i class="fa fa-circle-o-notch fa-spin"></i> Salvando..';
+                $('#btnSalvarDados').html(carregando);
+
+                let Prof = firebase.database().ref('Professores').child(user.uid);
+                Prof.set(objProfessor).then(function (data) {
+                    $('#modalDadosPessoais').modal('hide');
+                    $("#nomeProfessor").text('Olá, ' + nome + '!');
+                    $("#btnSalvarDados").text('Salvar Alterações');
+                    $("#mensagem").hide();
+                    swal({
+                        title: "Sucesso!",
+                        text: "Dados pessoais alterados com sucesso!",
+                        icon: "success",
+                    });
+                }).catch(function (error) {
+                    alert(error);
+                    console.error(error);
+                });
+            });
+        });
+
+        $("#sair").on('click', function (e) {
+            e.preventDefault();
+
+            swal({
+                    title: "Você tem certeza?",
+                    icon: "warning",
+                    buttons: ["Não", "Sim"],
+                    dangerMode: true,
+                })
+                .then((sair) => {
+                    if (sair) {
+                        firebase.auth().signOut();
+                    }
+                });
+        });
+
+        function limpaCamposForm() {
+            $("#descricao").val('');
+            $("#url").val('');
+            $("#id-link").remove();
+            $("#btnSalvar").text('Cadastrar');
+        }
+    </script>
+</body>
+
+</html>
