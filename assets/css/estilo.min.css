@@ -730,6 +730,7 @@ a {
 		z-index: 1;
     		overflow: scroll;
     		height: 100vh;
+		padding-bottom: 2em;
 	}
 }
 
