@@ -269,7 +269,7 @@
             });
             
             function enviaAnexo(file, link) {
-                // Referente ao upload do anexo
+                const storage = firebase.storage();
                 let referenciaUpload = storage.ref('anexos/' + file.name)
                 let task = referenciaUpload.put(file);
                 
