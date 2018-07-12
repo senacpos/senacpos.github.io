@@ -30,6 +30,29 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit" id="btnLogar">Entrar</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
     </form>
+    
+    <div class="modal fade" id="recuperarSenha" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <form id="formRecuperarSenha">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Recuperação de Senha</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <label for="emailRecuperacao" class="sr-only">Email</label>
+                <input type="email" id="emailRecuperacao" class="form-control" placeholder="Email" required />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="submit" class="btn btn-primary" id="btnRecuperarSenha">Recuperar Senha</button>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -39,6 +62,7 @@
         crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://use.fontawesome.com/c1a05e1793.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script>
         window.addEventListener('load', function (e) {
@@ -102,6 +126,27 @@
                 } else {
                     alert('Erro ao efetuar login. Favor tente novamente.');
                 }
+            });
+        });
+        
+        $("#formRecuperarSenha").on('submit', function(e){
+            e.preventDefault();
+
+            let email = $("#emailRecuperacao").val();
+            if(!email){
+                swal("Erro!", "Você deve informar um email válido.", "error");
+                return;
+            }
+
+            $('#btnRecuperarSenha').html('<i class="fa fa-circle-o-notch fa-spin"></i> Enviando email de recuperação..');
+                
+            let auth = firebase.auth();
+            auth.sendPasswordResetEmail(email).then(function() {
+                $('#recuperarSenha').modal('hide');
+                $('#btnRecuperarSenha').html('Recuperar Senha');
+                swal("Sucesso!", "Um link de redefinição de senha foi enviado para o seu email. Por favor verifique.", "success");
+            }).catch(function(error) {
+                swal("Erro!", "Ocorreu um erro ao enviar o email de redefinição de senha. Por favor, tente novamente.", "error");
             });
         });
     </script>
