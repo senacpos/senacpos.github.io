@@ -67,7 +67,20 @@ LinksRef.once('value', function (snapshot) {
         let colunaAcoes = linha.insertCell(1)
 
         colunaDescricao.textContent = link.descricao;
-        colunaAcoes.innerHTML = "<a href='" + link.url + "' class='btn-download' target='_blank'><i class='fa fa-external-link'></i></a>";
+        if(link.url) {
+           colunaAcoes.innerHTML = "<a href='" + link.url + "' class='btn-download' target='_blank'><i class='fa fa-external-link'></i></a>";
+        }
+
+        // Mostra anexos
+        let AnexosRef = firebase.database().ref('Links/' + idProfessor + '/' + id + '/Anexos');
+        AnexosRef.once('value', function (snapshot) {
+            snapshot.forEach(function (childSnapshot) {
+                let id = childSnapshot.key;
+                let anexo = childSnapshot.val();
+                
+                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download' target='_blank'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
+            });
+        });
     });
 
     if (num == 0) {
