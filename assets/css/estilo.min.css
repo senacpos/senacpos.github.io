@@ -777,7 +777,9 @@ td:nth-child(2) {
 	border: 1px solid #dedede;
 	padding: 3px 10px;
 	border-radius: 2px;
-	background: #f2f2f3
+	background: #f2f2f3;
+	margin-left: 8px;
+	text-decoration: none;
 }
 
 .btn-download:hover {
