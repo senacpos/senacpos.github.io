@@ -233,7 +233,7 @@
                     let Link = firebase.database().ref('Links/' + user.uid).child(id);
                     Link.set(objLink).then(function (data) {
                         if(file){
-                            enviaAnexo(file, data.key);
+                            enviaAnexo(file, id);
                         }
                         
                         limpaCamposForm();
