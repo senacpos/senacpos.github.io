@@ -61,14 +61,24 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="url">Link (URL)</label>
-                                    <input type="text" class="form-control" id="url" placeholder="Link (URL) a ser cadastrada.." required />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
                                     <label for="descricao">Descrição</label>
                                     <input type="text" class="form-control" id="descricao" placeholder="Descrição do link.." required />
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="anexo">Anexo</label>
+                                    <input type="file" class="form-control" id="anexo" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="url">Link (URL)</label>
+                                    <input type="text" class="form-control" id="url" placeholder="Link (URL) a ser cadastrada.." />
                                 </div>
                             </div>
                         </div>
@@ -190,9 +200,17 @@
                 let desc = $("#descricao").val();
                 let link = $("#url").val();
                 let id = $("#id-link").val();
+                let anexo = document.getElementById('anexo');
+                let file = anexo.files[0];
 
-                if (!desc || !link) {
-                    swal("Erro!", "Você deve preencher todos os campos.", "error");
+
+                if (!desc) {
+                    swal("Erro!", "Você deve preencher a descrição do link.", "error");
+                    return;
+                }
+                
+                if (!link && !file) {
+                    swal("Erro!", "Você deve ao menos informar uma URL ou enviar algum anexo.", "error");
                     return;
                 }
 
@@ -202,7 +220,7 @@
                 $("#id-link").remove();
 
                 let now = new Date().getTime();
-
+               
                 let objLink = {
                     descricao: desc,
                     url: link,
@@ -214,6 +232,10 @@
                 if (id) {
                     let Link = firebase.database().ref('Links/' + user.uid).child(id);
                     Link.set(objLink).then(function (data) {
+                        if(file){
+                            enviaAnexo(file, data.key);
+                        }
+                        
                         limpaCamposForm();
                         swal({
                             title: "Sucesso!",
@@ -227,6 +249,9 @@
                 } else {
                     let Link = firebase.database().ref('Links/' + user.uid);
                     Link.push(objLink).then(function (data) {
+                        if(file){
+                            enviaAnexo(file, data.key);
+                        }
                         limpaCamposForm();
                         swal({
                             title: "Sucesso!",
@@ -242,6 +267,41 @@
 
                 return false;
             });
+            
+            function enviaAnexo(file, link) {
+                // Referente ao upload do anexo
+                let referenciaUpload = storage.ref('anexos/' + file.name)
+                let task = referenciaUpload.put(file);
+                
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        
+                    },
+                    function error(error) {
+                        alert('Erro ao enviar arquivo');
+                    },
+                    function complete() {
+                        // salva dados no banco
+                        referenciaUpload.getMetadata().then(metadata => {
+
+                            let objAnexo = {
+                                nomeArquivo: metadata.name,
+                                urlDownload: metadata.downloadURLs[0]
+                            };
+
+                            let Anexo = firebase.database().ref('Links/' + user.uid + '/' + link + '/Anexos');
+                            Anexo.push(objAnexo).then(function (data) {
+                                console.log(data);
+                                alert('Enviado');
+                            }).catch(function (error) {
+                                alert(error);
+                                console.error(error);
+                            });
+                        });
+
+                    }
+                );
+            }
 
             // Verifica atualizações nos registros da tabela e busca os dados
             LinksRef.on('value', function (snapshot) {
