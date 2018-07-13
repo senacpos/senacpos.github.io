@@ -11,7 +11,7 @@ body {
   border-top: none;
 }
 
-.btn-confirmar {
+.swal-button swal-button--confirm {
   color: #fff;
   background-color: rgb(26, 34, 44);
   border-color: rgb(26, 34, 44);
