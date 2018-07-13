@@ -416,8 +416,16 @@
                             $(".excluirAnexo").on('click', function(e){
                                 e.preventDefault();
                                 let id = $(this).attr('id');
-                                alert(id);
                                 let partes = id.split(';');
+                                let qtdAnexos = $("#qtdAnexos").val();
+                                let txtLink = $("#url").val();
+                                
+                                if(qtdAnexos <= 1 && !txtLink) {
+                                    swal("Não é possível deixar um link sem URL e sem Anexos. Por favor, preencha a URL ou exclua o Link todo e não apenas este anexo.", {
+                                        icon: "error",
+                                    });
+                                    return;
+                                }
 
                                 swal({
                                     title: "Você tem certeza?",
