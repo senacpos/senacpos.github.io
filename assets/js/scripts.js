@@ -72,7 +72,7 @@ LinksRef.once('value', function (snapshot) {
         }
 
         // Mostra anexos
-        let AnexosRef = firebase.database().ref('Anexos/' + idProfessor + '/' + id');
+        let AnexosRef = firebase.database().ref('Anexos/' + idProfessor + '/' + id);
         AnexosRef.once('value', function (snapshot) {
             snapshot.forEach(function (childSnapshot) {
                 let id = childSnapshot.key;
