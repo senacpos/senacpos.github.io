@@ -430,7 +430,22 @@
                                 swal({
                                     title: "Você tem certeza?",
                                     icon: "warning",
-                                    buttons: ["Não", "Sim"],
+                                    buttons: {
+                                      cancel: {
+                                        text: "Não",
+                                        value: null,
+                                        visible: true,
+                                        className: "btn btn-default",
+                                        closeModal: true,
+                                      },
+                                      confirm: {
+                                        text: "Sim",
+                                        value: true,
+                                        visible: true,
+                                        className: "btn btn-danger",
+                                        closeModal: true
+                                      }
+                                    },
                                     dangerMode: true,
                                 }).then((willDelete) => {
                                     if (willDelete) {
@@ -464,7 +479,22 @@
                     swal({
                             title: "Você tem certeza?",
                             icon: "warning",
-                            buttons: ["Não", "Sim"],
+                            buttons: {
+                              cancel: {
+                                text: "Não",
+                                value: null,
+                                visible: true,
+                                className: "btn btn-default",
+                                closeModal: true,
+                              },
+                              confirm: {
+                                text: "Sim",
+                                value: true,
+                                visible: true,
+                                className: "btn btn-danger",
+                                closeModal: true
+                              }
+                            },
                             dangerMode: true,
                         })
                         .then((willDelete) => {
@@ -525,7 +555,22 @@
             swal({
                     title: "Você tem certeza?",
                     icon: "warning",
-                    buttons: ["Não", "Sim"],
+                    buttons: {
+                      cancel: {
+                        text: "Não",
+                        value: null,
+                        visible: true,
+                        className: "btn btn-default",
+                        closeModal: true,
+                      },
+                      confirm: {
+                        text: "Sim",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-danger",
+                        closeModal: true
+                      }
+                    },
                     dangerMode: true,
                 })
                 .then((sair) => {
