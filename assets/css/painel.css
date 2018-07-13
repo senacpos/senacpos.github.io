@@ -11,10 +11,16 @@ body {
   border-top: none;
 }
 
-.swal-button, .swal-button--confirm {
+.swal-button, .swal-button:active, .swal-button:visited, .swal-button--confirm {
   color: #fff;
   background-color: rgb(26, 34, 44);
   border-color: rgb(26, 34, 44);
+}
+
+.swal-button:hover {
+    background: rgb(51, 65, 82);
+    color: #FFFFFF;
+    border-color: rgb(51, 65, 82);
 }
 
 .btn-group-sm>.btn, .btn-sm {
