@@ -143,6 +143,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-info" id="redefinirSenha">Redefinir Senha</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                         <button type="submit" class="btn btn-primary" id="btnSalvarDados">Salvar Alterações</button>
                     </div>
@@ -179,6 +180,44 @@
                 window.location.href = 'https://senacpos.github.io/login';
                 return;
             }
+            
+            $("#redefinirSenha").on('click', function(e){
+                e.preventDefault();
+
+                $('#redefinirSenha').html('<i class="fa fa-circle-o-notch fa-spin"></i> Redefinir Senha');
+                
+                let auth = firebase.auth();
+                auth.sendPasswordResetEmail(user.email).then(function() {
+                    $('#redefinirSenha').html('Redefinir Senha');
+                    swal("Sucesso!", "Um link de redefinição de senha foi enviado para o seu email. Por favor verifique.",{
+                                          icon: 'success',
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                    });
+
+                }).catch(function(error) {
+                    swal("Erro!", "Ocorreu um erro ao enviar o email de redefinição de senha. Por favor, tente novamente.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
+                });
+            });
 
             let Professor = firebase.database().ref('Professores').child(user.uid);
             Professor.once('value', function (r) {
