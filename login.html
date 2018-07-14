@@ -122,9 +122,33 @@
                 $('#btnLogar').html('Entrar');
 
                 if (errorCode === 'auth/wrong-password') {
-                    alert('Senha incorreta.');
+                    
+                    swal("Erro!", "Senha incorreta.",{
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                    });
                 } else {
-                    alert('Erro ao efetuar login. Favor tente novamente.');
+                    
+                    swal("Erro!", "Ocorreu um erro ao efetuar login. Por favor, tente novamente.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
                 }
             });
         });
@@ -134,7 +158,18 @@
 
             let email = $("#emailRecuperacao").val();
             if(!email){
-                swal("Erro!", "Você deve informar um email válido.", "error");
+                swal("Erro!", "Você deve informar um email válido.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
                 return;
             }
 
@@ -144,9 +179,32 @@
             auth.sendPasswordResetEmail(email).then(function() {
                 $('#recuperarSenha').modal('hide');
                 $('#btnRecuperarSenha').html('Recuperar Senha');
-                swal("Sucesso!", "Um link de redefinição de senha foi enviado para o seu email. Por favor verifique.", "success");
+                swal("Sucesso!", "Um link de redefinição de senha foi enviado para o seu email. Por favor verifique.",{
+                                          icon: 'success',
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                 });
             }).catch(function(error) {
-                swal("Erro!", "Ocorreu um erro ao enviar o email de redefinição de senha. Por favor, tente novamente.", "error");
+                swal("Erro!", "Ocorreu um erro ao enviar o email de redefinição de senha. Por favor, tente novamente.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+               });
             });
         });
     </script>
