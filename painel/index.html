@@ -419,8 +419,9 @@
                         // Busca Anexos
                         let AnexosRef = firebase.database().ref('Anexos/' + user.uid + '/' + idObj);
                         let listaAnexos = document.getElementById('listaAnexos');
-                        AnexosRef.once('value', function (snapshot) {
+                        AnexosRef.on('value', function (snapshot) {
                             let num = 0;
+                            listaAnexos.innerHTML = '';
                             snapshot.forEach(function (childSnapshot) {
                                 num++;
                                 let id = childSnapshot.key;
@@ -506,7 +507,6 @@
                                         
 
                                         firebase.database().ref('Anexos/' + user.uid + '/' + partes[0]).child(partes[1]).remove();
-                                        limpaCamposForm();
                                         
                                         swal("Sucesso!", "Anexo deletado com sucesso!",{
                                           icon: 'success',
