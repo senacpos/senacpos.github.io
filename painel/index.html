@@ -211,13 +211,35 @@
                 let qtdAnexosEdit = $("#qtdAnexos").val();
 
 
-                if (!desc) {
-                    swal("Erro!", "Você deve preencher a descrição do link.", "error");
+                if (!desc) {                    
+                    swal("Erro!", "Você deve preencher a descrição do link.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
                     return;
                 }
                 
                 if (!link && files.length == 0 && !qtdAnexosEdit) {
-                    swal("Erro!", "Você deve ao menos informar uma URL ou enviar algum anexo.", "error");
+                    swal("Erro!", "Você deve ao menos informar uma URL ou enviar algum anexo.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
                     return;
                 }
 
@@ -243,10 +265,18 @@
                         if(temAnexo){
                             enviaAnexos(files, id, false);
                         } else {
-                            swal({
-                                title: "Sucesso!",
-                                text: "Seu link foi alterado com sucesso!",
-                                icon: "success",
+                            swal("Sucesso!", "Seu link foi alterado com sucesso!",{
+                              icon: 'success',
+                              buttons: {
+                                cancel: false,
+                                confirm: {
+                                    text: "OK",
+                                    value: true,
+                                    visible: true,
+                                    className: "btn btn-primary",
+                                    closeModal: true
+                                },
+                              },
                             });
                             limpaCamposForm();
                         }
@@ -261,10 +291,18 @@
                         if(temAnexo){
                             enviaAnexos(files, data.key, true);
                         } else {
-                            swal({
-                                title: "Sucesso!",
-                                text: "Seu link foi cadastrado com sucesso!",
-                                icon: "success",
+                            swal("Sucesso!", "Seu link foi cadastrado com sucesso!",{
+                              icon: 'success',
+                              buttons: {
+                                cancel: false,
+                                confirm: {
+                                    text: "OK",
+                                    value: true,
+                                    visible: true,
+                                    className: "btn btn-primary",
+                                    closeModal: true
+                                },
+                              },
                             });
                             limpaCamposForm();
                         }
@@ -303,12 +341,19 @@
                                 let Anexo = firebase.database().ref('Anexos/' + user.uid + '/' + link);
                                 Anexo.push(objAnexo).then(function (data) {
                                     if(i == (numArquivos -1)){
-                                        swal({
-                                            title: "Sucesso!",
-                                            text: "Seu link foi " + (novo ? 'cadastrado' : 'alterado') + " com sucesso!",
-                                            icon: "success",
+                                        swal("Sucesso!", "Seu link foi " + (novo ? 'cadastrado' : 'alterado') + " com sucesso!",{
+                                          icon: 'success',
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
                                         });
-
                                         limpaCamposForm();
                                     }
                                 }).catch(function (error) {
@@ -316,7 +361,7 @@
                                     console.error(error);
                                 });
                             });
-
+                        
                         }
                     );
                 }
@@ -421,9 +466,18 @@
                                 let txtLink = $("#url").val();
                                 
                                 if(qtdAnexos <= 1 && !txtLink) {
-                                    swal("Não é possível deixar um link sem URL e sem Anexos. Por favor, preencha a URL ou exclua o Link todo e não apenas este anexo.", {
-                                        icon: "error",
-                                    });
+                                    swal("Sucesso!", "Não é possível deixar um link sem URL e sem Anexos. Por favor, preencha a URL ou exclua o Link todo e não apenas este anexo.",{
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                                     });
                                     return;
                                 }
 
@@ -453,9 +507,21 @@
 
                                         firebase.database().ref('Anexos/' + user.uid + '/' + partes[0]).child(partes[1]).remove();
                                         limpaCamposForm();
-                                        swal("Anexo deletado com sucesso!", {
-                                            icon: "success",
-                                        });
+                                        
+                                        swal("Sucesso!", "Anexo deletado com sucesso!",{
+                                          icon: 'success',
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                                     });
+
                                     }
                                 });
                             });
@@ -502,9 +568,20 @@
 
                                 firebase.database().ref('Links/' + user.uid).child(e.target.id).remove();
                                 limpaCamposForm();
-                                swal("Link deletado com sucesso!", {
-                                    icon: "success",
-                                });
+                                
+                                swal("Sucesso!", "Link deletado com sucesso!",{
+                                          icon: 'success',
+                                          buttons: {
+                                            cancel: false,
+                                            confirm: {
+                                                text: "OK",
+                                                value: true,
+                                                visible: true,
+                                                className: "btn btn-primary",
+                                                closeModal: true
+                                            },
+                                          },
+                                });                              
                             }
                         });
                 });
@@ -518,7 +595,18 @@
                 let disciplina = $("#txtDisciplina").val();
 
                 if (!nome || !email || !disciplina) {
-                    swal("Erro!", "Você deve preencher todos os campos.", "error");
+                    swal("Erro!", "Você deve preencher todos os campos.",{
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
+                    });
                     return;
                 }
 
@@ -537,10 +625,19 @@
                     $("#nomeProfessor").text('Olá, ' + nome + '!');
                     $("#btnSalvarDados").text('Salvar Alterações');
                     $("#mensagem").hide();
-                    swal({
-                        title: "Sucesso!",
-                        text: "Dados pessoais alterados com sucesso!",
-                        icon: "success",
+                    
+                    swal("Sucesso!", "Dados pessoais alterados com sucesso!",{
+                      icon: 'success',
+                      buttons: {
+                        cancel: false,
+                        confirm: {
+                            text: "OK",
+                            value: true,
+                            visible: true,
+                            className: "btn btn-primary",
+                            closeModal: true
+                        },
+                      },
                     });
                 }).catch(function (error) {
                     alert(error);
