@@ -78,7 +78,7 @@ LinksRef.once('value', function (snapshot) {
                 let id = childSnapshot.key;
                 let anexo = childSnapshot.val();
                 
-                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download' target='_blank'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
+                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
             });
         });
         
