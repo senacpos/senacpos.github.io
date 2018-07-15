@@ -81,6 +81,11 @@ LinksRef.once('value', function (snapshot) {
                 colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download' target='_blank'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
             });
         });
+        
+        $(".btn-download").on('click', function(e) {
+            e.preventDefault();
+            baixarAnexo($(this).attr("href"));
+        });
     });
 
     if (num == 0) {
@@ -88,3 +93,13 @@ LinksRef.once('value', function (snapshot) {
         $("#tabelaLinks").text('Nenhum link cadastrado até o momento.');
     }
 });
+
+function baixarAnexo(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function(event) {
+      var blob = xhr.response;
+    };
+    xhr.open('GET', url);
+    xhr.send();
+}
