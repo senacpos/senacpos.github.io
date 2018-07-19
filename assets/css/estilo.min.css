@@ -809,3 +809,8 @@ a {
 .zebra {
 	background: #efefef;
 }
+
+.borda {
+    border: 1px solid #dedede;
+    border-radius: 2px;
+}
