@@ -66,10 +66,10 @@ LinksRef.once('value', function (snapshot) {
         linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');
 
         let colunaDescricao = document.createElement('div');
-        colunaDescricao.className = 'coluna coluna-6';
+        colunaDescricao.className = 'coluna coluna-8';
 
         let colunaAcoes = document.createElement('div');
-        colunaAcoes.className = 'coluna coluna-6';
+        colunaAcoes.className = 'coluna coluna-4';
 
         colunaDescricao.textContent = link.descricao;
         if(link.url) {
