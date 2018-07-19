@@ -733,15 +733,15 @@ a {
 		padding-bottom: 2em;
 	}
 
-	.coluna {
+	#listaLinks > .linha > .coluna {
 		margin-bottom: 0;
 	}
 
-	.coluna:nth-child(1) {
+	#listaLinks > .linha > .coluna:nth-child(1) {
 		float: left;
 	}
 
-	.coluna:nth-child(2){
+	#listaLinks > .linha > .coluna:nth-child(2){
 		float: right;
 	}
 
@@ -802,7 +802,7 @@ a {
 	padding: 8px;
 }
 
-.coluna:nth-child(2){
+#listaLinks > .linha > .coluna:nth-child(2){
 	text-align: right
 }
 
