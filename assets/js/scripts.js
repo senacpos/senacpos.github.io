@@ -61,6 +61,7 @@ LinksRef.once('value', function (snapshot) {
         let link = childSnapshot.val();
         num++;
         $("#carregando").hide();
+        $("#listaLinks").addClass('borda');
 
         let linha = document.createElement('div');
         linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');
@@ -98,6 +99,7 @@ LinksRef.once('value', function (snapshot) {
     });
 
     if (num == 0) {
+        $("#listaLinks").removeClass('borda');
         $("#carregando").hide();
         $("#listaLinks").text('Nenhum link cadastrado até o momento.');
     }
