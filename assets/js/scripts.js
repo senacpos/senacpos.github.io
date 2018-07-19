@@ -50,7 +50,7 @@ Professor.once('value', function (r) {
     $(".nomeProfessor, .emailProfessor").show();
 });
 
-let tabela = document.getElementById('tabelaLinks');
+let lista = document.getElementById('listaLinks');
 
 let LinksRef = firebase.database().ref('Links/' + idProfessor).orderByChild('dtCriacao');
 LinksRef.once('value', function (snapshot) {
@@ -61,15 +61,24 @@ LinksRef.once('value', function (snapshot) {
         let link = childSnapshot.val();
         num++;
         $("#carregando").hide();
-        let linha = tabela.insertRow(-1);
 
-        let colunaDescricao = linha.insertCell(0);
-        let colunaAcoes = linha.insertCell(1)
+        let linha = document.createElement('div');
+        linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');
+
+        let colunaDescricao = document.createElement('div');
+        colunaDescricao.className = 'coluna coluna-6';
+
+        let colunaAcoes = document.createElement('div');
+        colunaAcoes.className = 'coluna coluna-6';
 
         colunaDescricao.textContent = link.descricao;
         if(link.url) {
-           colunaAcoes.innerHTML = "<a href='" + link.url + "' class='btn-download' target='_blank'><i class='fa fa-external-link'></i></a>";
+           colunaAcoes.innerHTML = "<a href='" + link.url + "' class='btn-download link' target='_blank'><i class='fa fa-external-link'></i></a>";
         }
+
+        linha.appendChild(colunaDescricao);
+        linha.appendChild(colunaAcoes);
+        lista.appendChild(linha);
 
         // Mostra anexos
         let AnexosRef = firebase.database().ref('Anexos/' + idProfessor + '/' + id);
@@ -78,11 +87,11 @@ LinksRef.once('value', function (snapshot) {
                 let id = childSnapshot.key;
                 let anexo = childSnapshot.val();
                 
-                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
+                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download anexo'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
             });
         });
         
-        $(".btn-download").on('click', function(e) {
+        $(".anexo").on('click', function(e) {
             e.preventDefault();
             baixarAnexo($(this).attr("href"));
         });
@@ -90,7 +99,7 @@ LinksRef.once('value', function (snapshot) {
 
     if (num == 0) {
         $("#carregando").hide();
-        $("#tabelaLinks").text('Nenhum link cadastrado até o momento.');
+        $("#listaLinks").text('Nenhum link cadastrado até o momento.');
     }
 });
 
