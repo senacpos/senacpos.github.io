@@ -732,6 +732,19 @@ a {
     		height: 100vh;
 		padding-bottom: 2em;
 	}
+
+	.coluna {
+		margin-bottom: 0;
+	}
+
+	.coluna:nth-child(1) {
+		float: left;
+	}
+
+	.coluna:nth-child(2){
+		float: right;
+	}
+
 }
 
 .dropdown-content a {
@@ -764,15 +777,6 @@ a {
 	margin-top: 0
 }
 
-td {
-	margin: 0;
-	padding: 8px
-}
-
-td:nth-child(2) {
-	text-align: right
-}
-
 .btn-download {
 	border: 1px solid #dedede;
 	padding: 3px 10px;
@@ -787,13 +791,21 @@ td:nth-child(2) {
 	border-color: #ccc
 }
 
-tr:hover {
-	background: #f6f6f6
-}
-
 .disabled {
   color: currentColor;
   cursor: not-allowed;
   opacity: 0.5;
   text-decoration: none;
+}
+
+.linha {
+	padding: 8px;
+}
+
+.coluna:nth-child(2){
+	text-align: right
+}
+
+.zebra {
+	background: #efefef;
 }
