@@ -64,17 +64,11 @@ LinksRef.once('value', function (snapshot) {
         $("#listaLinks").addClass('borda');
 
         let linha = document.createElement('div');
-        linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');
-
-        let colunaDescricao = document.createElement('div');
-        colunaDescricao.className = 'coluna coluna-8';
-
-        let colunaAcoes = document.createElement('div');
-        colunaAcoes.className = 'coluna coluna-4';
-
-        colunaDescricao.textContent = link.descricao;
+        linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');       
+        linha.innerHTML = link.descricao;
+        
         if(link.url) {
-           colunaAcoes.innerHTML = "<a href='" + link.url + "' class='btn-download link' target='_blank'><i class='fa fa-external-link'></i></a>";
+           linha.innerHTML += "<a href='" + link.url + "' class='btn-download link' target='_blank'><i class='fa fa-external-link'></i></a>";
         }
 
         linha.appendChild(colunaDescricao);
@@ -88,7 +82,7 @@ LinksRef.once('value', function (snapshot) {
                 let id = childSnapshot.key;
                 let anexo = childSnapshot.val();
                 
-                colunaAcoes.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download anexo'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
+                linha.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download anexo'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
             });
         });
         
