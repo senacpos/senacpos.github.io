@@ -784,6 +784,7 @@ a {
 	background: #f2f2f3;
 	margin-left: 8px;
 	text-decoration: none;
+	float: right;
 }
 
 .btn-download:hover {
