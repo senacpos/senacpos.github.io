@@ -64,8 +64,9 @@ LinksRef.once('value', function (snapshot) {
         $("#listaLinks").addClass('borda');
 
         let linha = document.createElement('div');
-        linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');       
-        linha.innerHTML = link.descricao;
+        linha.className = 'linha' + (num%2 == 0 ? ' zebra' : '');   
+      
+        linha.innerHTML = "<span class='titulo_link'>" + link.descricao + "</span>";
         
         if(link.url) {
            linha.innerHTML += "<a href='" + link.url + "' class='btn-download link' target='_blank'><i class='fa fa-external-link'></i></a>";
