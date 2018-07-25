@@ -815,3 +815,7 @@ a {
     border: 1px solid #dedede;
     border-radius: 2px;
 }
+
+.titulo_link {
+    line-height: 1.9em;
+}
