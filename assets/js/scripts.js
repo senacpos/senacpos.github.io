@@ -71,8 +71,6 @@ LinksRef.once('value', function (snapshot) {
            linha.innerHTML += "<a href='" + link.url + "' class='btn-download link' target='_blank'><i class='fa fa-external-link'></i></a>";
         }
 
-        linha.appendChild(colunaDescricao);
-        linha.appendChild(colunaAcoes);
         lista.appendChild(linha);
 
         // Mostra anexos
