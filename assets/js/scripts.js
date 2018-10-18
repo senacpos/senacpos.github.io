@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var linksDesativados = "#frameworks-front-end, #desenvolvimento-android, #desenvolvimento-ios, #desenvolvimento-aplicacoes-distribuidas, #tecnologia-bd-dispositivos-moveis, #web-semantica, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
+    var linksDesativados = "#desenvolvimento-android, #desenvolvimento-ios, #desenvolvimento-aplicacoes-distribuidas, #tecnologia-bd-dispositivos-moveis, #web-semantica, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
 
     $(linksDesativados).addClass("disabled");
     $(linksDesativados).attr("href", "#");
