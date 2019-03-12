@@ -94,7 +94,7 @@ LinksRef.once('value', function (snapshot) {
     if (num == 0) {
         $("#listaLinks").removeClass('borda');
         $("#carregando").hide();
-        $("#listaLinks").text('Nenhum link cadastrado até o momento.');
+        $("#listaLinks").text('Nenhum conteúdo cadastrado até o momento.');
     }
 });
 
