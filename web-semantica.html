@@ -111,6 +111,19 @@
     </h1>
     <p class="nomeProfessor" style="display: none;"></p>
     <p class="emailProfessor" style="display: none;"></p>
+    
+    <a href="#" id="visualizaHorarios">Visualizar horários  </a>
+    <div id="horarios" class="horarios-content">
+        <table id="tabela">
+            <thead>
+                <th>Dia</th>
+                <th>Horário</th>
+            </thead>
+            <tbody id="tabelaHorarios">
+    
+            </tbody>
+        </table>
+    </div>
   </header>
 
   <div class="ms-row-padding ms-padding-64 ms-container">
@@ -128,6 +141,25 @@
 
   <script>
     let idProfessor = '3RKeBUqKWheciMpnevgZf8MG5Yu2';
+    
+    let listaHorarios = [
+        {
+            dia: '15/03',
+            horario: '19:00 - 22:00'
+        },
+        {
+            dia: '16/03',
+            horario: '09:00 - 12:00 e 13:00 - 18:00'
+        },
+        {
+            dia: '29/03',
+            horario: '19:00 - 22:00'
+        },
+        {
+            dia: '30/03',
+            horario: '09:00 - 12:00 e 13:00 - 18:00'
+        }
+    ];
   </script>
 
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
