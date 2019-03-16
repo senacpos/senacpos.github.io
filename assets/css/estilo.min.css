@@ -849,15 +849,11 @@ a {
 	margin-top: -8px;
 }
 
-.show {
-	display: block;
-}
-
 #tabela {
 	width: 100%;
 }
 
-.btn-horarios {
+.visualizaHorarios {
 	background: #ffffff;
 	border: 1px solid #ffffff;
 	border-radius: 3px;
