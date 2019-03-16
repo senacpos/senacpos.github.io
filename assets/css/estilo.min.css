@@ -819,3 +819,57 @@ a {
 .titulo_link {
     line-height: 1.9em;
 }
+
+.horarios-content {
+	display: none;
+	position: relative;
+	background-color: #ffffff;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	padding: 20px;
+	border-radius: .4em;
+	max-width: 400px;
+	margin: 0 auto;
+	margin-top: 13px;
+	color: #16232d;
+}
+
+.horarios-content:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 8px solid transparent;
+	border-bottom-color: #ffffff;
+	border-top: 0;
+	margin-left: -8px;
+	margin-top: -8px;
+}
+
+.show {
+	display: block;
+}
+
+#tabela {
+	width: 100%;
+}
+
+.btn-horarios {
+	background: #ffffff;
+	border: 1px solid #ffffff;
+	border-radius: 3px;
+	padding: 3px 10px;
+	font-size: 14px;
+	margin-top: 20px;
+	color: #16232d;
+	position: relative;
+	display: inline-block;
+	text-decoration: none;
+}
+
+#horarios {
+	z-index: 0;
+}
