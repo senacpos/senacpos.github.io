@@ -1,4 +1,21 @@
 $(document).ready(function () {
+    
+    let btnVisualizaHorarios = document.getElementById("visualizaHorarios");
+    btnVisualizaHorarios.addEventListener('click', function(e) {
+        document.getElementById("horarios").classList.toggle("show");
+    });
+
+    // carrega a tabela de horarios
+    let tabelaHorarios = document.getElementById('tabelaHorarios');
+    for(var x = 0; x < listaHorarios.length; x++) {
+        let linha = tabelaHorarios.insertRow(-1);
+        let colunaDia = linha.insertCell(0);
+        let colunaHora = linha.insertCell(1);
+        colunaDia.textContent = listaHorarios[x].dia;
+        colunaHora.textContent = listaHorarios[x].horario;
+    }
+
+    
     var linksDesativados = "#desenvolvimento-android, #desenvolvimento-ios, #desenvolvimento-aplicacoes-distribuidas, #tecnologia-bd-dispositivos-moveis, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
 
     $(linksDesativados).addClass("disabled");
@@ -96,6 +113,8 @@ LinksRef.once('value', function (snapshot) {
         $("#carregando").hide();
         $("#listaLinks").text('Nenhum conteúdo cadastrado até o momento.');
     }
+    
+    document.getElementById("visualizaHorarios").style.display = 'inline-block';
 });
 
 function baixarAnexo(url) {
