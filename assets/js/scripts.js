@@ -128,13 +128,8 @@ LinksRef.once('value', function (snapshot) {
                 let id = childSnapshot.key;
                 let anexo = childSnapshot.val();
                 
-                linha.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download anexo'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
+                linha.innerHTML += "<a href='" + anexo.urlDownload + "' class='btn-download anexo' download='" + anexo.nomeArquivo + "'>" + anexo.nomeArquivo + " <i class='fa fa-download'></i></a>";
             });
-        });
-        
-        $(".anexo").on('click', function(e) {
-            e.preventDefault();
-            baixarAnexo($(this).attr("href"));
         });
     });
 
@@ -146,13 +141,3 @@ LinksRef.once('value', function (snapshot) {
     
     document.getElementById("visualizaHorarios").style.display = 'inline-block';
 });
-
-function baixarAnexo(url) {
-    var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function(event) {
-      var blob = xhr.response;
-    };
-    xhr.open('GET', url);
-    xhr.send();
-}
