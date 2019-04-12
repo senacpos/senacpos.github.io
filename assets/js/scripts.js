@@ -1,5 +1,36 @@
 $(document).ready(function () {
     
+    // Renderiza o Mega Menu
+    let divMenu = document.getElementById('megaMenu');
+
+    for (let i = 0; i < modulos.length; i++) {
+        let modulo = modulos[i];
+
+        let coluna = document.createElement('div');
+        coluna.className = 'coluna coluna-4';
+
+        let tituloModulo = document.createElement('h5');
+        tituloModulo.innerHTML = modulo.nome;
+        tituloModulo.style.color = '#16232d';
+        coluna.appendChild(tituloModulo);
+
+        let lista = document.createElement('ul');
+
+        for (let j = 0; j < modulo.disciplinas.length; j++) {
+            let disciplina = modulo.disciplinas[j];
+            let item = document.createElement('li');
+            let link = document.createElement('a');
+            link.id = disciplina.id;
+            link.href = disciplina.link;
+            link.innerHTML = disciplina.nome;
+            item.appendChild(link);
+            lista.appendChild(item);
+        }
+
+        coluna.appendChild(lista);
+        divMenu.appendChild(coluna);
+    }
+    
     let btnVisualizaHorarios = document.getElementById("visualizaHorarios");
     btnVisualizaHorarios.addEventListener('click', function(e) {
         document.getElementById("horarios").classList.toggle("show");
