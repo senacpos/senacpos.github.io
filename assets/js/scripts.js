@@ -16,7 +16,7 @@ $(document).ready(function () {
     }
 
     
-    var linksDesativados = "#desenvolvimento-android, #desenvolvimento-ios, #desenvolvimento-aplicacoes-distribuidas, #tecnologia-bd-dispositivos-moveis, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
+    var linksDesativados = "#desenvolvimento-android, #desenvolvimento-ios, #tecnologia-bd-dispositivos-moveis, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
 
     $(linksDesativados).addClass("disabled");
     $(linksDesativados).attr("href", "#");
