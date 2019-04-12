@@ -20,13 +20,13 @@ const modulos = [{
             },
             {
                 id: 'frameworks-back-end',
-                nome: 'Frameworks de Desenvolvimento Web - Back - end',
+                nome: 'Frameworks de Desenvolvimento Web - Back-end',
                 link: 'https://senacpos.github.io/frameworks-back-end',
                 ativo: true
             },
             {
                 id: 'frameworks-front-end',
-                nome: 'Frameworks de Desenvolvimento Web - Front - end',
+                nome: 'Frameworks de Desenvolvimento Web - Front-end',
                 link: 'https://senacpos.github.io/frameworks-front-end',
                 ativo: true
             }
