@@ -21,8 +21,9 @@ $(document).ready(function () {
             let item = document.createElement('li');
             let link = document.createElement('a');
             link.id = disciplina.id;
-            link.href = disciplina.link;
+            link.href = disciplina.ativo ? disciplina.link : '#';
             link.innerHTML = disciplina.nome;
+            link.className = !disciplina.ativo ? 'disabled' : '';
             item.appendChild(link);
             lista.appendChild(item);
         }
@@ -50,11 +51,6 @@ $(document).ready(function () {
         }
     }
     
-    var linksDesativados = "#desenvolvimento-android, #desenvolvimento-ios, #tecnologia-bd-dispositivos-moveis, #desenvolvimento-dispositivos-moveis-idc, #desenvolvimento-aplicacoes-hibridas, #gerenciamento-de-projetos, #qualidade-de-software, #metodologia-e-tcc";
-
-    $(linksDesativados).addClass("disabled");
-    $(linksDesativados).attr("href", "#");
-
     var page = window.location.pathname.replace(/\//g, ' ').trim();
     $("#" + page).css("background-color", "#dddddd");
 });
