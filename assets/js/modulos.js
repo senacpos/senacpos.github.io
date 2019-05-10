@@ -50,7 +50,7 @@ const modulos = [{
                 id: 'desenvolvimento-mobile',
                 nome: 'Desenvolvimento Mobile',
                 link: 'https://senacpos.github.io/desenvolvimento-mobile',
-                ativo: false
+                ativo: true
             },
             {
                 id: 'desenvolvimento-ios',
