@@ -47,9 +47,9 @@ const modulos = [{
                 ativo: true
             },
             {
-                id: 'desenvolvimento-android',
-                nome: 'Desenvolvimento de aplicações para dispositivos móveis Android',
-                link: 'https://senacpos.github.io/desenvolvimento-android',
+                id: 'desenvolvimento-mobile',
+                nome: 'Desenvolvimento Mobile',
+                link: 'https://senacpos.github.io/desenvolvimento-mobile',
                 ativo: false
             },
             {
