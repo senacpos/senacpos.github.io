@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <title>Desenvolvimento Mobile - Pós Senac</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Página onde são disponibilizados links para o conteúdo das atividades da pós graduação do Senac." />
+    <meta name="author" content="Matheus Souza" />
+    <link rel="stylesheet" href="assets/css/grid.css" />
+    <link rel="stylesheet" href="assets/css/estilo.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png" href="assets/img/icone.png" />
+  </head>
+
+<body>
+
+  <div class="ms-top">
+    <div class="ms-bar ms-blue ms-card ms-left-align ms-large">
+      <a class="ms-bar-item ms-button ms-hide-medium ms-hide-large ms-right ms-padding-large ms-hover-white ms-large ms-blue" href="javascript:void(0);"
+        onclick="openMenuMobile()" title="Toggle Navigation Menu">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="https://senacpos.github.io" class="ms-bar-item ms-button ms-padding-large ms-white">
+        <i class="fa fa-home"></i>
+      </a>
+      <div class="dropdown">
+        <button class="dropbtn" onclick="openMegaMenu()">Disciplinas
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content" id="myDropdown">
+          <div class="linha" style="padding: 15px;" id="megaMenu">
+  
+          </div>
+        </div>
+      </div>
+      <a href="http://apsweb.senacrs.com.br/modulos/aluno/login.php5?" target="_blank" class="ms-bar-item ms-button ms-hide-small ms-padding-large ms-hover-white">Portal do Aluno</a>
+      <a style="float: right;" href="http://senacpos.github.io/login" class="ms-bar-item ms-button ms-hide-small ms-padding-large ms-hover-white"><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+    </div>
+
+    <div id="navDemo" class="ms-bar-block ms-white ms-hide ms-hide-large ms-hide-medium ms-large">
+      <a class="ms-bar-item ms-button ms-padding-large" href="http://apsweb.senacrs.com.br/modulos/aluno/login.php5?" target="_blank">Portal do Aluno</a>
+      <a class="ms-bar-item ms-button ms-padding-large" href="http://senacpos.github.io/login">Login do Professor</a>
+    </div>
+  </div>
+
+  <header class="ms-container ms-blue ms-center" style="padding:85px 16px">
+    <h1 class="tituloDisciplina">
+      <i class="fa fa-circle-o-notch fa-spin"></i>
+    </h1>
+    <p class="nomeProfessor" style="display: none;"></p>
+    <p class="emailProfessor" style="display: none;"></p>
+    
+    <a href="#" id="visualizaHorarios">Visualizar horários  </a>
+    <div id="horarios" class="horarios-content">
+        <table id="tabela">
+            <thead>
+                <th>Dia</th>
+                <th>Horário</th>
+            </thead>
+            <tbody id="tabelaHorarios">
+            </tbody>
+        </table>
+    </div>
+  </header>
+
+  <div class="ms-row-padding ms-padding-64 ms-container">
+    <div class="ms-content">
+      <div class="ms-threethird">
+        <h1>Conteúdo e Atividades</h1>
+        <div id="listaLinks">
+          <span id="carregando">
+            <i class="fa fa-circle-o-notch fa-spin"></i> Carregando..
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let idProfessor = 'O9mLC8RadjU4XuxPMXchtjT84IX2';
+    
+    let listaHorarios = [
+        {
+            dia: '10/05',
+            horario: '19:00 - 22:00'
+        },
+        {
+            dia: '11/05',
+            horario: '08:00 - 12:00 e 13:00 - 18:00'
+        },
+        {
+            dia: '24/05',
+            horario: '19:00 - 22:00'
+        },
+        {
+            dia: '25/05',
+            horario: '08:00 - 12:00 e 13:00 - 18:00'
+        }
+    ];
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <script src="assets/js/modulos.js"></script>
+  <script src="assets/js/scripts.js"></script>
+</body>
+
+</html>
