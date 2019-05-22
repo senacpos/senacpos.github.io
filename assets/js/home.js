@@ -28,6 +28,7 @@ window.onload = () => {
 
         coluna.appendChild(lista);
         divMenu.appendChild(coluna);
+        divMenu.classList.add("loaded");
     }
 
 }

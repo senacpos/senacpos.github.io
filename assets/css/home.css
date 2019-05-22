@@ -1,5 +1,4 @@
-.list-group-item.disabled,
-.list-group-item:disabled {
+.list-group-item.disabled, .list-group-item:disabled {
 	color: #bbbbbb;
 }
 
@@ -51,4 +50,17 @@ h1 {
 
 .disabled {
 	cursor: default;
+}
+
+#mainContent {
+	opacity: 0;
+	-webkit-transition: opacity 1s ease-in;
+	-moz-transition: opacity 1s ease-in;
+	-o-transition: opacity 1s ease-in;
+	-ms-transition: opacity 1s ease-in;
+	transition: opacity 1s ease-in;
+}
+
+.loaded {
+	opacity: 1 !important;
 }
